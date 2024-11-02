@@ -47,10 +47,9 @@ sudo apt install tightvncserver -y
    Thay thế nội dung file bằng:
 
    ```bash
-   #!/bin/sh
+   #!/bin/bash
    xrdb $HOME/.Xresources
    startxfce4 &
-   xfce4-terminal &
    ```
 
 4. **Cấp quyền thực thi cho file `xstartup`**:
