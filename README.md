@@ -50,6 +50,7 @@ sudo apt install tightvncserver -y
    #!/bin/bash
    xrdb $HOME/.Xresources
    startxfce4 &
+   xfce4-terminal &
    -rfbport 6000
    -geometry 1920x1080 -depth 24
 
