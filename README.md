@@ -139,7 +139,7 @@ Nếu muốn VNC server luôn sử dụng port tùy chỉnh mà không cần ch�
 Để cấu hình màn hình với độ phân giải Full HD, sử dụng tùy chọn `-geometry` khi khởi động VNC:
 
 ```bash
-vncserver :1 -geometry 1920x1080 -depth 24
+vncserver :1 -rfbport 6000 -geometry 1920x1080 -depth 24
 ```
 
 - `:1`: Display bạn muốn sử dụng.
