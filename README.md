@@ -50,6 +50,9 @@ sudo apt install tightvncserver -y
    #!/bin/bash
    xrdb $HOME/.Xresources
    startxfce4 &
+   -rfbport 6000
+   -geometry 1920x1080 -depth 24
+
    ```
 
 4. **Cấp quyền thực thi cho file `xstartup`**:
@@ -100,4 +103,81 @@ sudo apt install tightvncserver -y
 
 ---
 
-Với các bước trên, bạn đã hoàn tất cài đặt và có thể điều khiển VPS qua VNC, sử dụng Google Chrome và truy cập vào Terminal XFCE tự động khi kết nối.
+
+# Hướng Dẫn Cấu Hình VNC: Đổi Port và Cài Đặt Full HD
+
+## 1. Đổi Port của VNC Server
+
+### **1.1. Đổi port khi khởi động**
+Bạn có thể thay đổi cổng của VNC server bằng cách sử dụng tùy chọn `-rfbport`. Ví dụ, để chạy VNC server trên cổng `6000`:
+
+```bash
+vncserver :1 -rfbport 6000
+```
+
+### **1.2. Cấu hình port cố định**
+Nếu muốn VNC server luôn sử dụng port tùy chỉnh mà không cần chỉ định mỗi lần, thực hiện các bước sau:
+
+#### **Với `xstartup`**
+1. Mở file cấu hình `xstartup` (thường tại `~/.vnc/xstartup` hoặc `/etc/vncserver-config-default`).
+2. Thêm dòng sau:
+   ```
+   -rfbport 6000
+   ```
+3. Lưu lại và khởi động lại VNC server:
+   ```bash
+   vncserver -kill :1
+   vncserver :1
+   ```
+
+---
+
+## 2. Chạy VNC với màn hình Full HD
+
+### **2.1. Đặt độ phân giải khi khởi động**
+Để cấu hình màn hình với độ phân giải Full HD, sử dụng tùy chọn `-geometry` khi khởi động VNC:
+
+```bash
+vncserver :1 -geometry 1920x1080 -depth 24
+```
+
+- `:1`: Display bạn muốn sử dụng.
+- `-geometry 1920x1080`: Độ phân giải Full HD.
+- `-depth 24`: Độ sâu màu 24-bit.
+
+### **2.2. Cấu hình độ phân giải cố định**
+Nếu muốn VNC luôn sử dụng độ phân giải Full HD:
+
+#### **Với `xstartup`**
+1. Mở file cấu hình `xstartup` (thường tại `~/.vnc/xstartup`).
+2. Thêm lệnh sau:
+   ```
+   -geometry 1920x1080 -depth 24
+   ```
+
+---
+
+## 3. Kiểm tra và xác minh
+
+### **3.1. Xác minh port và độ phân giải**
+- Xác minh port đang lắng nghe:
+  ```bash
+  netstat -tuln | grep <port>
+  ```
+- Kết nối qua VNC Viewer với địa chỉ:
+  ```
+  IP:<port>
+  ```
+
+### **3.2. Kiểm tra log VNC**
+Nếu gặp vấn đề, kiểm tra log để tìm hiểu nguyên nhân:
+
+```bash
+cat ~/.vnc/<hostname>:<display>.log
+```
+
+---
+
+> **Lưu ý:** Đảm bảo các cài đặt được áp dụng trong cấu hình tương ứng để không phải thực hiện lại mỗi lần khởi động.
+
+---
