@@ -62,12 +62,6 @@ sudo apt install tightvncserver -y
    chmod +x ~/.vnc/xstartup
    ```
 
-5. **Khởi động lại VNC Server trên màn hình `:1` (tương ứng với cổng 5901)**:
-
-   ```bash
-   vncserver :1
-   ```
-
 ### 4. Kết nối VNC từ máy Windows
 
 1. Tải **VNC Viewer** từ [RealVNC](https://www.realvnc.com/en/connect/download/viewer/) và cài đặt trên máy Windows.
@@ -109,29 +103,6 @@ sudo apt install tightvncserver -y
 
 ## 1. Đổi Port của VNC Server
 
-### **1.1. Đổi port khi khởi động**
-Bạn có thể thay đổi cổng của VNC server bằng cách sử dụng tùy chọn `-rfbport`. Ví dụ, để chạy VNC server trên cổng `6000`:
-
-```bash
-vncserver :1 -rfbport 6000
-```
-
-### **1.2. Cấu hình port cố định**
-Nếu muốn VNC server luôn sử dụng port tùy chỉnh mà không cần chỉ định mỗi lần, thực hiện các bước sau:
-
-#### **Với `xstartup`**
-1. Mở file cấu hình `xstartup` (thường tại `~/.vnc/xstartup` hoặc `/etc/vncserver-config-default`).
-2. Thêm dòng sau:
-   ```
-   -rfbport 6000
-   ```
-3. Lưu lại và khởi động lại VNC server:
-   ```bash
-   vncserver -kill :1
-   vncserver :1
-   ```
-
----
 
 ## 2. Chạy VNC với màn hình Full HD
 
